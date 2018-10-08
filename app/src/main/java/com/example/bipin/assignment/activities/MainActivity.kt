@@ -14,31 +14,40 @@ import com.example.bipin.assignment.R.string.closeDrawer
 import android.R.attr.fragment
 import android.support.v4.app.Fragment
 import android.util.Log
-import com.example.bipin.assignment.fragments.MakeARequestFragment
-import com.example.bipin.assignment.fragments.MyProfileFragment
-import com.example.bipin.assignment.fragments.PreviousRequestFagment
+import android.view.MenuItem
+import android.view.WindowManager
+import com.example.bipin.assignment.fragments.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var toggle : EndDrawerToggle? = null
+    private var toggle: EndDrawerToggle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         loadToolbar()
         loadDrawerMenu()
     }
 
-    private fun loadToolbar(){
+    private fun loadToolbar() {
 
         setSupportActionBar(toolbar)
 
         toggle = EndDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close,main_layout)
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close, main_layout)
         drawer_layout.addDrawerListener(toggle!!)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return true
 
     }
 
@@ -46,11 +55,11 @@ class MainActivity : AppCompatActivity() {
 
         val mDashBoardMenuItemBeans = ArrayList<DashBoardMenuItemBean>()
 
-        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_person_black_24dp, getString(R.string.make_a_request)))
-        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_person_black_24dp, getString(R.string.my_profile)))
-        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_person_black_24dp, getString(R.string.prev_requests)))
-        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_person_black_24dp, getString(R.string.hrc_karakoe_guide)))
-        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_person_black_24dp, getString(R.string.other_events)))
+        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_radio_button_unchecked_black_24dp, getString(R.string.make_a_request)))
+        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_radio_button_unchecked_black_24dp, getString(R.string.my_profile)))
+        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_radio_button_unchecked_black_24dp, getString(R.string.prev_requests)))
+        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_radio_button_unchecked_black_24dp, getString(R.string.hrc_karakoe_guide)))
+        mDashBoardMenuItemBeans.add(DashBoardMenuItemBean(R.drawable.ic_radio_button_unchecked_black_24dp, getString(R.string.other_events)))
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
@@ -68,25 +77,37 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun selectItem(position: Int){
+    fun selectItem(position: Int) {
         var fragment: Fragment? = null
         var tag: String
-          when(position){
+        when (position) {
             0 -> {
-                fragment =  MakeARequestFragment()
+                fragment = MakeARequestFragment()
                 tag = resources.getString(R.string.make_a_request)
             }
             1 -> {
                 fragment = MyProfileFragment()
                 tag = resources.getString(R.string.my_profile)
             }
-            else -> {
+            2 -> {
                 fragment = PreviousRequestFagment()
                 tag = resources.getString(R.string.prev_requests)
             }
+            3 -> {
+                fragment = HRCKaraokeGuideFragment()
+                tag = resources.getString(R.string.hrc_karakoe_guide)
+            }
+            4 -> {
+                fragment = OtherEvents()
+                tag = resources.getString(R.string.other_events)
+            }
+            else -> {
+                fragment = MakeARequestFragment()
+                tag = resources.getString(R.string.make_a_request)
+            }
 
         }
-        setFragment(fragment,tag)
+        setFragment(fragment, tag)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -94,11 +115,18 @@ class MainActivity : AppCompatActivity() {
         toggle!!.syncState()
     }
 
-    private fun setFragment(fragment: Fragment?, TAG: String){
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item!!.itemId == android.R.id.home){
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setFragment(fragment: Fragment?, TAG: String) {
 
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment,TAG).commit()
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment, TAG).commit()
 
             toolbar.title = fragment.tag
             drawer_layout.closeDrawers()
