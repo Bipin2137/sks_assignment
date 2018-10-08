@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
+    <dimen name="quarter_margin">4dp</dimen>
+    <dimen name="double_margin">32dp</dimen>
+
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xxlg">20sp</dimen>
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_smsm">12sp</dimen>
+    <dimen name="nav_header_height">164dp</dimen>
+    <dimen name="profile_width">75dp</dimen>
+    <dimen name="profile_height">75dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="double_double_margin">48dp</dimen>
+    <dimen name="two_dp">2dp</dimen>
+</resources>

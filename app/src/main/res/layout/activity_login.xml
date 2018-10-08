@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/welcome_string" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/double_margin"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="#2fa881" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    android:text="@string/login"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_md"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/double_margin"
+                android:paddingLeft="@dimen/double_margin"
+                android:paddingRight="@dimen/double_margin"
+                android:paddingStart="@dimen/double_margin">
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/Username"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/half_margin"
+                    android:textColor="#555"
+                    android:textCursorDrawable="@drawable/bg_input_cursor"
+                    android:textSize="@dimen/text_md" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/standard_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/double_margin"
+                android:paddingLeft="@dimen/double_margin"
+                android:paddingRight="@dimen/double_margin"
+                android:paddingStart="@dimen/double_margin">
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/Password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/half_margin"
+                    android:textColor="#555"
+                    android:textCursorDrawable="@drawable/bg_input_cursor"
+                    android:textSize="@dimen/text_md" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/bt_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_z"
+                    android:text="@string/go"
+                    android:textColor="#d3d3d3"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/half_margin"
+                android:layout_marginTop="@dimen/half_margin"
+                android:text="@string/forgot_your_password"
+                android:textColor="#9a9a9a"
+                android:textSize="@dimen/text_sm" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/cv"
+        android:layout_alignRight="@id/cv"
+        android:layout_alignTop="@id/cv"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginRight="-20dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/plus"
+        android:transitionName="loginFab"
+        app:fabSize="normal" />
+
+</RelativeLayout>
